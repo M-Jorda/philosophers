@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:58:36 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/13 16:00:47 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 16:07:56 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # define WRONG_TTD			"The time to die must be a positive number."
 # define WRONG_TTE			"The time to eat must be a positive number."
 # define WRONG_TTS			"The time to sleep must be a positive number."
+# define WRONG_MEAL_COUNT	"The count they must eat is wrong."
 
 #endif
