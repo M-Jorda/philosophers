@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:49:24 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 16:04:59 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 16:32:10 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ int	main(int argc, char **argv, char **env)
 	(void) env;
 	validate_args(argc, argv);
 	init(&data, &argv[1]);
+	return (0);
 }
