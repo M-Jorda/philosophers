@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:30:54 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/13 10:56:22 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 17:36:57 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <string.h>
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int				num_philo;
 	int				time_to_die;
@@ -46,7 +46,6 @@ typedef struct s_philo
 	int			r_fork;
 	pthread_t	thread;
 	t_data		*data;
-	
 }	t_philo;
 
 #endif

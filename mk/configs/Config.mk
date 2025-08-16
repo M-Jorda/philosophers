@@ -7,5 +7,6 @@ NAME_BNS	= philo_bonus
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -rf
-PRINT		= echo
+RM			= rm -f
+RMRF		= rm -rf
+PRT			= echo

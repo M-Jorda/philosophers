@@ -6,13 +6,13 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:49:24 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 16:32:10 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 17:06:41 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/philo.h"
 
-static inline void	validate_args(int argc, char **argv)
+static inline void	validate_args(int argc)
 {
 	if (argc < 5)
 		printerr(NOT_ENOUGHT_ARGS, 1);
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 	t_data	data;
 
 	(void) env;
-	validate_args(argc, argv);
+	validate_args(argc);
 	init(&data, &argv[1]);
 	return (0);
 }

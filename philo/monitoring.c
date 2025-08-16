@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:44:09 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/13 16:47:54 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 17:52:00 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	monitoring(void *arg)
 	if (!arg)
 		return ;
 	data = (t_data *) arg;
+	(void) data;
 }

@@ -6,12 +6,11 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 11:01:02 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 16:33:43 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 17:43:41 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/philo.h"
-#include <sys/time.h>
+#include "../../header/philo.h"
 
 static inline int	isvalid(t_data *data)
 {

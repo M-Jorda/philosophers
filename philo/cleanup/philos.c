@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 16:16:11 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 16:22:47 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 17:47:35 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	cleanup_each_philo(t_data *data, int index)
 	t_philo	*philo;
 
 	philo = &data->philo[index];
-	pthread_detach(&philo->thread);
+	pthread_detach(philo->thread);
 }
 
 void	cleanup_philos(t_data *data)

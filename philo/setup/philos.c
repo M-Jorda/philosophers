@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 12:42:50 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 15:51:25 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 17:38:38 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	init_each_philo(t_data *data, int index)
 	philo->data = data;
 	res = pthread_create(&philo->thread, NULL, routine, philo);
 	if (res != 0)
-		return (0);	
+		return (0);
 	return (1);
 }
 
@@ -47,7 +47,7 @@ int	init_philos(t_data *data)
 	int	num_philo;
 	int	status;
 	int	i;
-	
+
 	if (!data || alloc_philos(data))
 		return (-1);
 	i = 0;
