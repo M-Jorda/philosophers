@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 16:10:13 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 17:47:11 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/16 18:54:22 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	cleanup_forks_mutexes(t_data *data)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
+		// free(&data->forks[i]);
 	}
-	if (data->forks)
-		free(data->forks);
-	return (-1);
+	// if (data->forks)
+	free(data->forks);
+	return (0);
 }
 
 static inline void	cleanup_glogal_mutexes(t_data *data)
@@ -39,6 +40,4 @@ void	cleanup_mutexes(t_data *data)
 {
 	cleanup_forks_mutexes(data);
 	cleanup_glogal_mutexes(data);
-	if (data->forks)
-		free(data->forks);
 }

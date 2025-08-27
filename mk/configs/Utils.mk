@@ -8,10 +8,10 @@ clean:
 	@$(RMRF) $(DIR_OBJ)
 
 fclean_man:	clean_man
-	@$(RM) ./$(NAME)
+	@$(RM) ./bin/$(NAME)
 
 fclean_bon:	clean_bon
-	@$(RM) ./$(NAME_BNS)
+	@$(RM) ./bin/$(NAME_BNS)
 
 fclean:		clean fclean_man fclean_bon
 

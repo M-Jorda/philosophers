@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 12:42:50 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 17:38:38 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:30:42 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static inline int	alloc_philos(t_data *data)
 {
+	// printf("oo\n\n");
 	if (!data)
-		return (1);
+		return (0);
+	// printf("oo\n\n");
 	data->philo = malloc(sizeof(t_philo) * data->num_philo);
 	if (!data->philo)
-		return (1);
-	return (0);
+		return (0);
+	// printf("oo\n\n");
+	return (1);
 }
 
 static int	init_each_philo(t_data *data, int index)
@@ -36,6 +39,9 @@ static int	init_each_philo(t_data *data, int index)
 	philo->l_fork = index;
 	philo->r_fork = (index + 1) % data->num_philo;
 	philo->data = data;
+	philo->islast = false;
+	if (index - 1 == data->num_philo)
+		philo->islast = true;
 	res = pthread_create(&philo->thread, NULL, routine, philo);
 	if (res != 0)
 		return (0);
@@ -48,7 +54,7 @@ int	init_philos(t_data *data)
 	int	status;
 	int	i;
 
-	if (!data || alloc_philos(data))
+	if (!data || !alloc_philos(data))
 		return (-1);
 	i = 0;
 	num_philo = data->num_philo;

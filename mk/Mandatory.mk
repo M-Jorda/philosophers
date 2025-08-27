@@ -1,7 +1,7 @@
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	@$(CC) $(CFLAGS) -o bin/$(NAME) $(OBJ)
+	@$(CC) $(CFLAGS) -o ./bin/$(NAME) $(OBJ)
 	@$(PRINT) $(BANNER)	
 
 $(DIR)%.o: %.c | dir_mandatory

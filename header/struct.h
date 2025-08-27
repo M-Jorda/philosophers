@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:30:54 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 17:36:57 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/17 10:59:24 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <string.h>
+# include <stdbool.h>
 
 typedef struct s_data
 {
@@ -44,6 +45,7 @@ typedef struct s_philo
 	long		last_meal;
 	int			l_fork;
 	int			r_fork;
+	bool		islast;
 	pthread_t	thread;
 	t_data		*data;
 }	t_philo;
