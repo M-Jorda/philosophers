@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 16:16:11 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/18 08:55:18 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/28 09:21:43 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,11 @@
 static void	cleanup_each_philo(t_data *data, int index)
 {
 	t_philo	*philo;
-	int		result;
 
 	if (!data || index < 0 || index >= data->num_philo)
-		return;
+		return ;
 	philo = &data->philo[index];
-	
-	// Vérifier que le thread a été créé avant de joindre
-	result = pthread_join(philo->thread, NULL);
-	if (result != 0)
-	{
-		// Thread join a échoué - thread peut être déjà terminé
-	//	debug("pthread_join failed", index);
-	}
+	pthread_join(philo->thread, NULL);
 }
 
 void	cleanup_philos(t_data *data)
@@ -36,7 +28,7 @@ void	cleanup_philos(t_data *data)
 	int	i;
 
 	if (!data)
-		return;
+		return ;
 	num_philo = data->num_philo;
 	i = 0;
 	while (i < num_philo)

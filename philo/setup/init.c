@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 11:01:02 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/18 09:39:08 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 16:28:46 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ int	init(t_data *data, char **argv)
 
 	if (!data)
 		return (-1);
-//	printf("DEBUG: init 01\n");
 	i = 0;
 	data->start_time = calculate_msec();
 	if (data->start_time < 0)
 		return (-1);
-//	printf("DEBUG: init 02\n");
 	data->simulation_end = 0;
 	data->num_philo = ft_atoi(argv[i++]);
 	data->time_to_die = ft_atoi(argv[i++]);
@@ -47,11 +45,13 @@ int	init(t_data *data, char **argv)
 	data->must_eat_count = -1;
 	if (argv[i])
 		data->must_eat_count = ft_atoi(argv[i]);
-//	printf("DEBUG: init 03\n");
+	if (!isvalid(data))
+		return (-1);
+	if (!init_mutexes(data))
+		return (-1);
+	if (!init_philos(data))
+		return (-1);
 	if (pthread_create(&data->monitoring, NULL, monitoring, data) != 0)
 		return (-1);
-	if (!isvalid(data) || !init_mutexes(data) || !init_philos(data))
-		return (-1);
-//	printf("DEBUG: init 04\n");
 	return (0);
 }

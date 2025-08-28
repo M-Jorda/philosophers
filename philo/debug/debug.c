@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 18:36:08 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/18 08:51:55 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 21:50:15 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	debug_data(t_data *data)
 	printf("DEBUG: Time to sleep : %d\n", data->time_to_sleep);
 	printf("DEBUG: Time must eat : %d\n", data->must_eat_count);
 	printf("DEBUG: Start time : %ld\n", data->start_time);
-	
 }
 
 void	debug(char *mess, int num)

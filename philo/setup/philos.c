@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 12:42:50 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/27 14:30:42 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 21:42:03 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 static inline int	alloc_philos(t_data *data)
 {
-	// printf("oo\n\n");
 	if (!data)
 		return (0);
-	// printf("oo\n\n");
-	data->philo = malloc(sizeof(t_philo) * data->num_philo);
+	data->philo = calloc(data->num_philo, sizeof(t_philo));
 	if (!data->philo)
 		return (0);
-	// printf("oo\n\n");
 	return (1);
 }
 
@@ -35,12 +32,11 @@ static int	init_each_philo(t_data *data, int index)
 	philo = &data->philo[index];
 	philo->id = index + 1;
 	philo->meals_eaten = 0;
-	philo->last_meal = data->start_time;
 	philo->l_fork = index;
 	philo->r_fork = (index + 1) % data->num_philo;
 	philo->data = data;
 	philo->islast = false;
-	if (index - 1 == data->num_philo)
+	if (index == data->num_philo - 1)
 		philo->islast = true;
 	res = pthread_create(&philo->thread, NULL, routine, philo);
 	if (res != 0)
@@ -55,15 +51,15 @@ int	init_philos(t_data *data)
 	int	i;
 
 	if (!data || !alloc_philos(data))
-		return (-1);
+		return (0);
 	i = 0;
 	num_philo = data->num_philo;
 	while (i < num_philo)
 	{
 		status = init_each_philo(data, i);
 		if (!status)
-			return (-1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }

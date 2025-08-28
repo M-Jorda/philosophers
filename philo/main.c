@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:49:24 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/18 08:58:55 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 21:39:27 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@ static inline void	validate_args(int argc)
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
+	int		status;
 
 	(void) env;
 	validate_args(argc);
-	// printf("DEBUG: main 01\n");
-	init(&data, &argv[1]);
-	// debug_data(&data);
-	// printf("DEBUG: main 02\n");
-	// debug_philos(&data);
-	
-	// AJOUT: Signaler l'arrêt aux threads
-	usleep(100000); // Laisser les threads démarrer
-	// data.simulation_end = 1; // Signal d'arrêt
-	
+	status = init(&data, &argv[1]);
+	if (status != 0)
+	{
+		printerr("Error: init failed\n", 1);
+		return (1);
+	}
+	pthread_join(data.monitoring, NULL);
 	cleanup_total(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:39:30 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/18 08:55:18 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 21:51:10 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ long	calculate_msec(void)
 	if (tv.tv_sec < 0 || tv.tv_usec >= 1000000)
 		return (-1);
 	sec = tv.tv_sec * 1000;
-    msec = tv.tv_usec / 1000;
+	msec = tv.tv_usec / 1000;
 	return (sec + msec);
 }
 
@@ -32,17 +32,10 @@ long	get_elapsed_time(t_data *data)
 	long	curr_time;
 
 	if (!data)
-	{
-	//	debug("get_elapsed_time", 0);
 		return (-1);
-	}
-//	debug("get_elapsed_time", 1);
 	curr_time = calculate_msec();
 	if (curr_time == -1)
-	{
-	//	debug("get_elapsed_time", 2);
 		return (-1);
-	}
 	return (curr_time - data->start_time);
 }
 

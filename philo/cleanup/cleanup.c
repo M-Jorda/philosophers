@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 15:07:38 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 17:45:11 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 15:25:22 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	cleanup_total(t_data *data)
 {
-	cleanup_mutexes(data);
 	cleanup_philos(data);
+	cleanup_mutexes(data);
 }

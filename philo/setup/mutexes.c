@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 15:02:51 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/16 18:46:17 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 21:42:22 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,21 @@ int	init_mutexes(t_data *data)
 	int	status;
 
 	if (!data)
-		return (-1);
-	// debug("INIT_MUTEXES", 0);
+		return (0);
 	status = allocate_forks(data);
 	if (!status)
-		return (-1);
-	// debug("INIT_MUTEXES", 1);
+		return (0);
 	status = init_fork_mutexes(data);
 	if (!status)
-		return (cleanup_forks_mutexes(data));
-	// debug("INIT_MUTEXES", 2);
+	{
+		cleanup_forks_mutexes(data);
+		return (0);
+	}
 	status = init_global_mutexes(data);
 	if (!status)
-		return (cleanup_forks_mutexes(data));
-	// debug("INIT_MUTEXES", 3);
+	{
+		cleanup_forks_mutexes(data);
+		return (0);
+	}
 	return (1);
 }

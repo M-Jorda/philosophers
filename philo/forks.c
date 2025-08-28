@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 10:22:55 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/18 08:48:11 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/27 21:44:24 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	release_forks(t_philo *philo)
 	return (0);
 }
 
-static inline int take_fork(t_philo *philo,  int fork)
+static inline int	take_fork(t_philo *philo, int fork)
 {
 	t_data	*data;
 
@@ -41,14 +41,29 @@ static inline int take_fork(t_philo *philo,  int fork)
 	return (1);
 }
 
+static inline int	one_philo(t_data *data, t_philo *philo)
+{
+	pthread_mutex_lock(&data->forks[philo->l_fork]);
+	print_action(philo, FORK);
+	usleep(data->time_to_die * 1000);
+	print_action(philo, DIED);
+	pthread_mutex_unlock(&data->forks[philo->l_fork]);
+	data->simulation_end = 1;
+	return (0);
+}
+
 int	take_forks(t_philo *philo)
 {
-	int	status;
-	int	first_fork;
-	int	second_fork;
+	t_data	*data;
+	int		status;
+	int		first_fork;
+	int		second_fork;
 
 	if (!philo)
 		return (0);
+	data = philo->data;
+	if (data->num_philo == 1)
+		return ((one_philo(data, philo)));
 	first_fork = philo->l_fork;
 	second_fork = philo->r_fork;
 	if (philo->islast)
