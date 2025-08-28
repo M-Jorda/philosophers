@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/philo.h"
+#include "philo.h"
 
 void	debug_data(t_data *data)
 {

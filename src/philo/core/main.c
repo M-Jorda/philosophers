@@ -6,11 +6,11 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:49:24 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/27 21:39:27 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/28 09:54:02 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/philo.h"
+#include "philo.h"
 
 static inline void	validate_args(int argc)
 {

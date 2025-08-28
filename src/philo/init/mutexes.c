@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/philo.h"
+#include "philo.h"
 
 static inline int	allocate_forks(t_data *data)
 {

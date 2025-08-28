@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/philo.h"
+#include "philo.h"
 
 void	cleanup_total(t_data *data)
 {

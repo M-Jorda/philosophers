@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/philo.h"
+#include "philo.h"
 
 static inline int	isvalid(t_data *data)
 {

@@ -1,8 +1,8 @@
-include mk/configs/Colors.mk
-include mk/configs/Config.mk
-include mk/configs/Sources.mk
-include mk/Mandatory.mk
-include mk/Bonus.mk
-include mk/configs/Utils.mk
+include build/configs/Colors.mk
+include build/configs/Config.mk
+include build/configs/Sources.mk
+include build/Mandatory.mk
+include build/Bonus.mk
+include build/configs/Utils.mk
 
 .PHONY: all
