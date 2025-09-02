@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:49:24 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/28 09:54:02 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/28 11:29:05 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ static inline void	validate_args(int argc)
 		printerr(TOO_MUCH_ARGS, 1);
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 	int		status;
 
-	(void) env;
 	validate_args(argc);
 	status = init(&data, &argv[1]);
 	if (status != 0)

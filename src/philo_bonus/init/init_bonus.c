@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 11:01:02 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/28 12:02:33 by jjorda           ###   ########.fr       */
+/*   Created: 2025/08/28 11:44:15 by jjorda            #+#    #+#             */
+/*   Updated: 2025/08/28 16:37:38 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-static inline int	isvalid(t_data *data)
+static inline int	isvalid(t_data_b *data)
 {
 	if (data->num_philo == 0)
 		return (printerr(WRONG_PHILO, -1));
@@ -27,9 +27,9 @@ static inline int	isvalid(t_data *data)
 	return (1);
 }
 
-int	init(t_data *data, char **argv)
+int	init_b(t_data_b *data, char **argv)
 {
-	int				i;
+	int	i;
 
 	if (!data)
 		return (-1);
@@ -37,7 +37,6 @@ int	init(t_data *data, char **argv)
 	data->start_time = calculate_msec();
 	if (data->start_time < 0)
 		return (-1);
-	data->simulation_end = 0;
 	data->num_philo = ft_atoi(argv[i++]);
 	data->time_to_die = ft_atoi(argv[i++]);
 	data->time_to_eat = ft_atoi(argv[i++]);
@@ -47,11 +46,9 @@ int	init(t_data *data, char **argv)
 		data->must_eat_count = ft_atoi(argv[i]);
 	if (!isvalid(data))
 		return (-1);
-	if (!init_mutexes(data))
+	if (!init_semaphores_b(data))
 		return (-1);
-	if (!init_philos(data))
-		return (-1);
-	if (pthread_create(&data->monitoring, NULL, monitoring, data) != 0)
+	if (!init_philos_b(data))
 		return (-1);
 	return (0);
 }

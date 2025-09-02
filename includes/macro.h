@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:58:36 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/17 10:57:50 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/08/28 12:15:08 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,14 @@
 # define SLEEP				"is sleeping"
 # define THINK				"is thinking"
 # define FORK				"has taken a fork"
+
+/* ********************* BONUS SPECIFIC ********************* */
+
+# define SEM_FAILED_MSG     "Failed to create semaphore.\n"
+# define FORK_FAILED_MSG    "Failed to fork process.\n"
+
+# define EXIT_SUCCESS_FED   0
+# define EXIT_DEATH         1
+# define EXIT_ERROR         2
 
 #endif

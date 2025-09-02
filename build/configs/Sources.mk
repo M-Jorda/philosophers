@@ -2,6 +2,10 @@
 
 MAN			= src/philo/
 
+# 						---------  CLEANUP  ---------						   #
+CLEANUP		= $(MAN)cleanup/
+CLEANUP_SRC	= $(CLEANUP)cleanup.c $(CLEANUP)mutexes.c $(CLEANUP)philos.c
+
 #						---------   CORE    ---------						   #
 CORE		= $(MAN)core/
 CORE_SRC	= $(CORE)main.c $(CORE)philo.c $(CORE)monitoring.c $(CORE)forks.c
@@ -14,13 +18,9 @@ INIT_SRC	= $(INIT)init.c $(INIT)mutexes.c $(INIT)philos.c
 UTILS		= $(MAN)utils/
 UTILS_SRC	= $(UTILS)utils.c $(UTILS)err.c $(UTILS)print.c
 
-# 						---------  CLEANUP  ---------						   #
-CLEANUP		= $(MAN)cleanup/
-CLEANUP_SRC	= $(CLEANUP)cleanup.c $(CLEANUP)mutexes.c $(CLEANUP)philos.c
-
 # 						---------   DEBUG   ---------						   #
 DEBUG		= $(MAN)debug/
-DEBUG_SRC	= $(DEBUG)debug.c $(DEBUG)d_philos.c $(DEBUG)d_mutex.c
+DEBUG_SRC	= $(DEBUG)debug.c
 
 # 						---------  SOURCES  ---------						   #
 MAN_SRC		= $(CORE_SRC) $(INIT_SRC) $(UTILS_SRC) $(CLEANUP_SRC) $(DEBUG_SRC)
