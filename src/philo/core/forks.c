@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 10:22:55 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/27 21:44:24 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/26 20:35:02 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static inline int	take_fork(t_philo *philo, int fork)
 	if (!philo)
 		return (0);
 	data = philo->data;
+	if (data->simulation_end)
+		return (0);
 	pthread_mutex_lock(&data->forks[fork]);
-	if (isfinish(data))
+	if (data->simulation_end)
 	{
 		pthread_mutex_unlock(&data->forks[fork]);
 		return (0);
@@ -52,6 +54,28 @@ static inline int	one_philo(t_data *data, t_philo *philo)
 	return (0);
 }
 
+static void	get_fork_order(t_philo *philo, int *first, int *second)
+{
+	if (philo->id == philo->data->num_philo)
+	{
+		*first = philo->r_fork;
+		*second = philo->l_fork;
+	}
+	else
+	{
+		if (philo->l_fork < philo->r_fork)
+		{
+			*first = philo->l_fork;
+			*second = philo->r_fork;
+		}
+		else
+		{
+			*first = philo->r_fork;
+			*second = philo->l_fork;
+		}
+	}
+}
+
 int	take_forks(t_philo *philo)
 {
 	t_data	*data;
@@ -62,20 +86,19 @@ int	take_forks(t_philo *philo)
 	if (!philo)
 		return (0);
 	data = philo->data;
+	if (data->simulation_end)
+		return (0);
 	if (data->num_philo == 1)
 		return ((one_philo(data, philo)));
-	first_fork = philo->l_fork;
-	second_fork = philo->r_fork;
-	if (philo->islast)
-	{
-		first_fork = philo->r_fork;
-		second_fork = philo->l_fork;
-	}
+	get_fork_order(philo, &first_fork, &second_fork);
 	status = take_fork(philo, first_fork);
 	if (!status)
 		return (status);
 	status = take_fork(philo, second_fork);
 	if (!status)
+	{
+		pthread_mutex_unlock(&data->forks[first_fork]);
 		return (status);
+	}
 	return (1);
 }

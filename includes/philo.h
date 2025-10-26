@@ -55,5 +55,6 @@ int		ft_atoi(const char *str);
 long	calculate_msec(void);
 long	get_elapsed_time(t_data *data);
 int		printerr(char *mess, int err);
+int		check_simulation_end(t_data *data);
 
 #endif
