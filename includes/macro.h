@@ -6,15 +6,16 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:58:36 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/28 12:15:08 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 14:55:18 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACRO_H
 # define MACRO_H
 
-# define NOT_ENOUGHT_ARGS	"You need to put more than 3 arguments.\n"
+# define NOT_ENOUGHT_ARGS	"You need to put at least 4 arguments.\n"
 # define TOO_MUCH_ARGS		"You can't put more than 5 arguments.\n"
+# define ZERO_PHILO			"THe number of philosophers must be a positive\n"
 
 # define WRONG_PHILO		"The number of philosopher must be a positive\
  number.\n"

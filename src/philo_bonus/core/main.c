@@ -6,18 +6,20 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:28:08 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/28 17:28:22 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 14:57:12 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static inline void	validate_args_b(int argc)
+static inline void	validate_args_b(int argc, char **argv)
 {
 	if (argc < 5)
 		printerr(NOT_ENOUGHT_ARGS, 1);
 	else if (argc > 6)
 		printerr(TOO_MUCH_ARGS, 1);
+	else if (argv[1][0] == '0')
+		printerr(ZERO_PHILO, 1);
 }
 
 static inline int	start_simulation_b(t_data_b *data)
@@ -50,7 +52,7 @@ int	main(int argc, char **argv)
 {
 	t_data_b	data;
 
-	validate_args_b(argc);
+	validate_args_b(argc, argv);
 	if (init_b(&data, &argv[1]) != 0)
 		return (cleanup_b(&data, 1));
 	if (start_simulation_b(&data))
