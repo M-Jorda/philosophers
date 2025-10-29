@@ -6,11 +6,22 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:44:59 by jjorda            #+#    #+#             */
-/*   Updated: 2025/10/26 20:35:01 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 11:53:18 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static bool	loop_until(t_data *data, long end)
+{
+	while (get_elapsed_time(data) < end)
+	{
+		if (data->simulation_end)
+			return (false);
+		usleep(20);
+	}
+	return (true);
+}
 
 int	is_eating(t_philo *philo)
 {
@@ -32,12 +43,13 @@ int	is_eating(t_philo *philo)
 	pthread_mutex_unlock(&data->meal_mutex);
 	print_action(philo, EAT);
 	eat_until = get_elapsed_time(data) + data->time_to_eat;
-	while (get_elapsed_time(data) < eat_until)
-	{
-		if (data->simulation_end)
-			break ;
-		usleep(1000);
-	}
+	loop_until(data, eat_until);
+	// while (get_elapsed_time(data) < eat_until)
+	// {
+	// 	if (data->simulation_end)
+	// 		break ;
+	// 	usleep(20);
+	// }
 	release_forks(philo);
 	return (0);
 }
@@ -54,12 +66,14 @@ static int	is_sleeping(t_philo *philo)
 		return (-1);
 	print_action(philo, SLEEP);
 	wake_time = get_elapsed_time(data) + data->time_to_sleep;
-	while (get_elapsed_time(data) < wake_time)
-	{
-		if (data->simulation_end)
-			return (-1);
-		usleep(1000);
-	}
+	if (!loop_until(data, wake_time))
+		return (-1);
+	// while (get_elapsed_time(data) < wake_time)
+	// {
+	// 	if (data->simulation_end)
+	// 		return (-1);
+	// 	usleep(20);
+	// }
 	return (0);
 }
 
@@ -81,31 +95,19 @@ static int	is_thinking(t_philo *philo)
 		if (think_time > 0 && think_time < 600)
 		{
 			think_until = get_elapsed_time(data) + think_time;
-			while (get_elapsed_time(data) < think_until)
-			{
-				if (data->simulation_end)
-					return (-1);
-				usleep(1000);
-			}
+			if (!loop_until(data, think_until))
+				return (-1);
+			// while (get_elapsed_time(data) < think_until)
+			// {
+			// 	if (data->simulation_end)
+			// 		return (-1);
+			// 	usleep(20);
+			// }
 			return (0);
 		}
 	}
-	usleep(1000);
+	usleep(20);
 	return (0);
-}
-
-static void	init_philo_routine(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->meal_mutex);
-	philo->last_meal = get_elapsed_time(philo->data);
-	pthread_mutex_unlock(&philo->data->meal_mutex);
-	if (philo->id % 2 == 0)
-	{
-		if (philo->data->num_philo % 2 == 1)
-			usleep(philo->data->time_to_eat * 800);
-		else
-			usleep(philo->data->time_to_eat * 500);
-	}
 }
 
 void	*routine(void *arg)
@@ -115,7 +117,11 @@ void	*routine(void *arg)
 	if (!arg)
 		return (NULL);
 	philo = (t_philo *) arg;
-	init_philo_routine(philo);
+	pthread_mutex_lock(&philo->data->meal_mutex);
+	philo->last_meal = get_elapsed_time(philo->data);
+	pthread_mutex_unlock(&philo->data->meal_mutex);
+	if (philo->id % 2 == 1 && philo->data->num_philo > 1)
+		usleep(philo->data->time_to_eat * 500);
 	while (!check_simulation_end(philo->data))
 	{
 		if (is_eating(philo) == -1)

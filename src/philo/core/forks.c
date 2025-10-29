@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 10:22:55 by jjorda            #+#    #+#             */
-/*   Updated: 2025/10/26 20:35:02 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 11:47:49 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,15 @@ static inline int	one_philo(t_data *data, t_philo *philo)
 
 static void	get_fork_order(t_philo *philo, int *first, int *second)
 {
-	if (philo->id == philo->data->num_philo)
+	if (philo->id % 2 == 0)
 	{
-		*first = philo->r_fork;
-		*second = philo->l_fork;
+		*first = philo->l_fork;
+		*second = philo->r_fork;
 	}
 	else
 	{
-		if (philo->l_fork < philo->r_fork)
-		{
-			*first = philo->l_fork;
-			*second = philo->r_fork;
-		}
-		else
-		{
-			*first = philo->r_fork;
-			*second = philo->l_fork;
-		}
+		*first = philo->r_fork;
+		*second = philo->l_fork;
 	}
 }
 
