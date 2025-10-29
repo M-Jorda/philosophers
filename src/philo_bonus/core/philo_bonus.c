@@ -27,7 +27,7 @@ int	is_eating_b(t_philo_b *philo)
 	sem_post(philo->data->meal_sem);
 	if (print_action_b(philo, EAT) == -1)
 		return (-1);
-	usleep(data->time_to_eat * 1000);
+	ft_wait(data->time_to_eat, data);
 	return (0);
 }
 
@@ -37,7 +37,7 @@ static int	is_sleeping_b(t_philo_b *philo)
 		return (-1);
 	if (print_action_b(philo, SLEEP))
 		return (-1);
-	usleep(philo->data->time_to_sleep * 1000);
+	ft_wait(philo->data->time_to_sleep, philo->data);
 	return (0);
 }
 
@@ -61,6 +61,8 @@ void	routine_b(t_philo_b *philo)
 	sem_wait(philo->data->meal_sem);
 	philo->last_meal = philo->data->start_time;
 	sem_post(philo->data->meal_sem);
+	if (philo->id % 2 == 1)
+		usleep((philo->data->time_to_eat / 2) * 1000);
 	while (1)
 	{
 		take_forks_b(philo);

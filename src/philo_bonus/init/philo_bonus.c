@@ -14,11 +14,15 @@
 
 static inline int	alloc_philos_b(t_data_b *data)
 {
+	size_t	size;
+
 	if (!data)
 		return (0);
-	data->philo = calloc(data->num_philo, sizeof(t_philo_b));
+	size = data->num_philo * sizeof(t_philo_b);
+	data->philo = malloc(size);
 	if (!data->philo)
 		return (0);
+	memset(data->philo, 0, size);
 	return (1);
 }
 

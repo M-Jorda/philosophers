@@ -30,7 +30,7 @@ void	*monitoring_b(void *arg)
 			print_death_b(philo);
 			exit(EXIT_DEATH);
 		}
-		usleep(1000);
+		usleep(20);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:44:59 by jjorda            #+#    #+#             */
-/*   Updated: 2025/10/29 11:53:18 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 11:54:17 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ int	is_eating(t_philo *philo)
 	print_action(philo, EAT);
 	eat_until = get_elapsed_time(data) + data->time_to_eat;
 	loop_until(data, eat_until);
-	// while (get_elapsed_time(data) < eat_until)
-	// {
-	// 	if (data->simulation_end)
-	// 		break ;
-	// 	usleep(20);
-	// }
 	release_forks(philo);
 	return (0);
 }
@@ -68,12 +62,6 @@ static int	is_sleeping(t_philo *philo)
 	wake_time = get_elapsed_time(data) + data->time_to_sleep;
 	if (!loop_until(data, wake_time))
 		return (-1);
-	// while (get_elapsed_time(data) < wake_time)
-	// {
-	// 	if (data->simulation_end)
-	// 		return (-1);
-	// 	usleep(20);
-	// }
 	return (0);
 }
 
@@ -97,12 +85,6 @@ static int	is_thinking(t_philo *philo)
 			think_until = get_elapsed_time(data) + think_time;
 			if (!loop_until(data, think_until))
 				return (-1);
-			// while (get_elapsed_time(data) < think_until)
-			// {
-			// 	if (data->simulation_end)
-			// 		return (-1);
-			// 	usleep(20);
-			// }
 			return (0);
 		}
 	}

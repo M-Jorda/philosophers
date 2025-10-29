@@ -67,3 +67,20 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
+
+void	ft_wait(long duration_ms, t_data_b *data)
+{
+	long	start;
+	long	current;
+
+	if (!data || duration_ms <= 0)
+		return ;
+	start = get_elapsed_time(data);
+	while (1)
+	{
+		current = get_elapsed_time(data);
+		if (current - start >= duration_ms)
+			break ;
+		usleep(20);
+	}
+}

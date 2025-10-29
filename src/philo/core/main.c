@@ -12,12 +12,13 @@
 
 #include "philo.h"
 
-static inline void	validate_args(int argc)
+static inline int	validate_args(int argc)
 {
 	if (argc < 5)
-		printerr(NOT_ENOUGHT_ARGS, 1);
+		return (printerr(NOT_ENOUGHT_ARGS, 1));
 	else if (argc > 6)
-		printerr(TOO_MUCH_ARGS, 1);
+		return (printerr(TOO_MUCH_ARGS, 1));
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -25,7 +26,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 	int		status;
 
-	validate_args(argc);
+	status = validate_args(argc);
+	if (status != 0)
+		return (status);
 	status = init(&data, &argv[1]);
 	if (status != 0)
 	{

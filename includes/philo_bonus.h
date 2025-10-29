@@ -45,6 +45,7 @@ void	print_death_b(t_philo_b *philo);
 int		ft_atoi(const char *str);
 long	calculate_msec(void);
 long	get_elapsed_time(t_data_b *data);
+void	ft_wait(long duration_ms, t_data_b *data);
 int		printerr(char *mess, int err);
 
 #endif

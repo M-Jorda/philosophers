@@ -15,7 +15,5 @@
 int	printerr(char *mess, int err)
 {
 	printf("%s", mess);
-	if (err > 0)
-		exit(err);
 	return (err);
 }
