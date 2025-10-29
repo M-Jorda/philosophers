@@ -17,6 +17,24 @@ static inline void	sem_unlink_b(void)
 	sem_unlink(SEM_FORKS_NAME);
 	sem_unlink(SEM_PRINT_NAME);
 	sem_unlink(SEM_MEAL_NAME);
+	sem_unlink(SEM_DEATH_NAME);
+}
+
+static int	init_extra_sems(t_data_b *data)
+{
+	data->meal_sem = sem_open(SEM_MEAL_NAME, O_CREAT | O_EXCL, 0644, 1);
+	if (data->meal_sem == SEM_FAILED)
+	{
+		cleanup_b(data, 1);
+		return (printerr(SEM_FAILED_MSG, 0));
+	}
+	data->death_sem = sem_open(SEM_DEATH_NAME, O_CREAT | O_EXCL, 0644, 1);
+	if (data->death_sem == SEM_FAILED)
+	{
+		cleanup_b(data, 1);
+		return (printerr(SEM_FAILED_MSG, 0));
+	}
+	return (1);
 }
 
 int	init_semaphores_b(t_data_b *data)
@@ -34,11 +52,5 @@ int	init_semaphores_b(t_data_b *data)
 		cleanup_b(data, 1);
 		return (printerr(SEM_FAILED_MSG, 0));
 	}
-	data->meal_sem = sem_open(SEM_MEAL_NAME, O_CREAT | O_EXCL, 0644, 1);
-	if (data->meal_sem == SEM_FAILED)
-	{
-		cleanup_b(data, 1);
-		return (printerr(SEM_FAILED_MSG, 0));
-	}
-	return (1);
+	return (init_extra_sems(data));
 }

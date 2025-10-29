@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:44:15 by jjorda            #+#    #+#             */
-/*   Updated: 2025/08/28 16:37:38 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 12:33:53 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,26 @@
 
 static inline int	isvalid(t_data_b *data)
 {
+	if (data->num_philo < 0)
+		return (printerr("Error: Invalid number of philosophers\n", 0));
+	if (data->time_to_die < 0)
+		return (printerr("Error: Invalid time_to_die\n", 0));
+	if (data->time_to_eat < 0)
+		return (printerr("Error: Invalid time_to_eat\n", 0));
+	if (data->time_to_sleep < 0)
+		return (printerr("Error: Invalid time_to_sleep\n", 0));
+	if (data->must_eat_count < -1)
+		return (printerr("Error: Invalid must_eat_count\n", 0));
 	if (data->num_philo == 0)
-		return (printerr(WRONG_PHILO, -1));
+		return (printerr(WRONG_PHILO, 0));
 	if (data->time_to_die == 0)
-		return (printerr(WRONG_TTD, -1));
+		return (printerr(WRONG_TTD, 0));
 	if (data->time_to_eat == 0)
-		return (printerr(WRONG_TTE, -1));
+		return (printerr(WRONG_TTE, 0));
 	if (data->time_to_sleep == 0)
-		return (printerr(WRONG_TTS, -1));
+		return (printerr(WRONG_TTS, 0));
 	if (data->must_eat_count == 0)
-		return (printerr(WRONG_MEAL_COUNT, -1));
+		return (printerr(WRONG_MEAL_COUNT, 0));
 	return (1);
 }
 

@@ -38,6 +38,7 @@ typedef struct s_data_bonus
 	sem_t					*forks_sem;
 	sem_t					*print_sem;
 	sem_t					*meal_sem;
+	sem_t					*death_sem;
 	struct s_philo_bonus	*philo;
 }	t_data_b;
 
@@ -56,5 +57,6 @@ typedef struct s_philo_bonus
 # define SEM_FORKS_NAME "/philo_forks"
 # define SEM_PRINT_NAME "/philo_print"
 # define SEM_MEAL_NAME "/philo_meal"
+# define SEM_DEATH_NAME "/philo_death"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:39:30 by jjorda            #+#    #+#             */
-/*   Updated: 2025/10/29 11:47:49 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 12:33:52 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,6 @@ long	get_elapsed_time(t_data *data)
 	if (elapsed < 0)
 		return (0);
 	return (elapsed);
-}
-
-static int	ft_atoi_parse(const char *str, int *i)
-{
-	int	sign;
-
-	sign = 1;
-	while (str[*i] == ' ' || (str[*i] >= 9 && str[*i] <= 13))
-		(*i)++;
-	if (str[*i] == '-' || str[*i] == '+')
-	{
-		if (str[*i] == '-')
-			sign = -1;
-		(*i)++;
-	}
-	return (sign);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	sign;
-	int	result;
-
-	if (!str)
-		return (0);
-	i = 0;
-	result = 0;
-	sign = ft_atoi_parse(str, &i);
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return (result * sign);
 }
 
 int	check_simulation_end(t_data *data)

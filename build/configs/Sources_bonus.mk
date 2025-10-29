@@ -16,7 +16,7 @@ INIT_SRC	= $(INIT)init_bonus.c $(INIT)sem_bonus.c $(INIT)philo_bonus.c
 
 # 						---------   UTILS	---------						   #
 UTILS		= $(BNS_DIR)utils/
-UTILS_SRC	= $(UTILS)utils_bonus.c $(UTILS)err_bonus.c $(UTILS)print_bonus.c
+UTILS_SRC	= $(UTILS)utils_bonus.c $(UTILS)err_bonus.c $(UTILS)print_bonus.c $(UTILS)atoi_bonus.c
 
 # 						---------  SOURCES  ---------						   #
 BNS_SRC		= $(CORE_SRC) $(INIT_SRC) $(UTILS_SRC) $(CLEANUP_SRC)

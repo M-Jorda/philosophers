@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 16:00:16 by jjorda            #+#    #+#             */
-/*   Updated: 2025/10/26 20:35:02 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 12:42:44 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	*monitoring_b(void *arg)
 	if (!arg)
 		return (NULL);
 	philo = (t_philo_b *) arg;
+	usleep(1000);
 	while (1)
 	{
 		sem_wait(philo->data->meal_sem);
 		time_last_meal = get_elapsed_time(philo->data) - philo->last_meal;
 		sem_post(philo->data->meal_sem);
-		if (time_last_meal > philo->data->time_to_die)
+		if (time_last_meal >= philo->data->time_to_die)
 		{
 			print_death_b(philo);
 			exit(EXIT_DEATH);

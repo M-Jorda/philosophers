@@ -28,5 +28,4 @@ void	print_death_b(t_philo_b *philo)
 		return ;
 	sem_wait(philo->data->print_sem);
 	printf("%ld %d %s\n", get_elapsed_time(philo->data), philo->id, DIED);
-	sem_post(philo->data->print_sem);
 }

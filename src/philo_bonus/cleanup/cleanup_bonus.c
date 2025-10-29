@@ -28,6 +28,10 @@ int	cleanup_b(t_data_b *data, int err)
 		clean_sem_b(data->print_sem, SEM_PRINT_NAME);
 	if (data->meal_sem != SEM_FAILED)
 		clean_sem_b(data->meal_sem, SEM_MEAL_NAME);
+	if (data->death_sem != SEM_FAILED)
+		clean_sem_b(data->death_sem, SEM_DEATH_NAME);
+	if (data->philo)
+		free(data->philo);
 	return (err);
 }
 

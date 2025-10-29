@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:39:30 by jjorda            #+#    #+#             */
-/*   Updated: 2025/10/26 20:35:02 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 12:33:52 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,6 @@ long	get_elapsed_time(t_data_b *data)
 	if (curr_time == -1)
 		return (-1);
 	return (curr_time - data->start_time);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	sign;
-	int	result;
-	int	digit;
-
-	if (!str)
-		return (0);
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		digit = str[i] - '0';
-		result = result * 10 + digit;
-		i++;
-	}
-	return (result * sign);
 }
 
 void	ft_wait(long duration_ms, t_data_b *data)

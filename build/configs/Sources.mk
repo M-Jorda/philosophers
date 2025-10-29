@@ -16,7 +16,7 @@ INIT_SRC	= $(INIT)init.c $(INIT)mutexes.c $(INIT)philos.c
 
 # 						---------   UTILS	---------						   #
 UTILS		= $(MAN)utils/
-UTILS_SRC	= $(UTILS)utils.c $(UTILS)err.c $(UTILS)print.c
+UTILS_SRC	= $(UTILS)utils.c $(UTILS)err.c $(UTILS)print.c $(UTILS)atoi.c
 
 # 						---------   DEBUG   ---------						   #
 DEBUG		= $(MAN)debug/

@@ -6,7 +6,7 @@
 /*   By: jjorda <jjorda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:06:09 by jjorda            #+#    #+#             */
-/*   Updated: 2025/10/26 20:35:01 by jjorda           ###   ########.fr       */
+/*   Updated: 2025/10/29 12:33:52 by jjorda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,22 @@ static int	is_thinking_b(t_philo_b *philo)
 	return (0);
 }
 
+static void	init_routine_b(t_philo_b *philo)
+{
+	pthread_create(&philo->monitor_thread, NULL, monitoring_b, philo);
+	sem_wait(philo->data->meal_sem);
+	philo->last_meal = 0;
+	sem_post(philo->data->meal_sem);
+	if (philo->data->num_philo == 1)
+	{
+		print_action_b(philo, FORK);
+		while (1)
+			usleep(1000);
+	}
+	if (philo->id % 2 == 1)
+		usleep((philo->data->time_to_eat / 2) * 1000);
+}
+
 void	routine_b(t_philo_b *philo)
 {
 	int			must_eat;
@@ -57,12 +73,7 @@ void	routine_b(t_philo_b *philo)
 	if (!philo)
 		return ;
 	must_eat = philo->data->must_eat_count;
-	pthread_create(&philo->monitor_thread, NULL, monitoring_b, philo);
-	sem_wait(philo->data->meal_sem);
-	philo->last_meal = philo->data->start_time;
-	sem_post(philo->data->meal_sem);
-	if (philo->id % 2 == 1)
-		usleep((philo->data->time_to_eat / 2) * 1000);
+	init_routine_b(philo);
 	while (1)
 	{
 		take_forks_b(philo);
