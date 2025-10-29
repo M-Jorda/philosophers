@@ -20,7 +20,6 @@ void	*monitoring_b(void *arg)
 	if (!arg)
 		return (NULL);
 	philo = (t_philo_b *) arg;
-	usleep(1000);
 	while (1)
 	{
 		sem_wait(philo->data->meal_sem);

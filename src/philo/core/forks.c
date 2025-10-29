@@ -47,10 +47,9 @@ static inline int	one_philo(t_data *data, t_philo *philo)
 {
 	pthread_mutex_lock(&data->forks[philo->l_fork]);
 	print_action(philo, FORK);
-	usleep(data->time_to_die * 1000);
-	print_action(philo, DIED);
+	while (!data->simulation_end)
+		usleep(1000);
 	pthread_mutex_unlock(&data->forks[philo->l_fork]);
-	data->simulation_end = 1;
 	return (0);
 }
 

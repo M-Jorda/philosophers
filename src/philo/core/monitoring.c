@@ -98,7 +98,7 @@ void	*monitoring(void *arg)
 			pthread_mutex_unlock(&data->print_mutex);
 			break ;
 		}
-		usleep(1000);
+		usleep(20);
 	}
 	return ((void *) data);
 }
