@@ -59,6 +59,7 @@ static void	init_routine_b(t_philo_b *philo)
 		philo->last_meal = get_elapsed_time(philo->data);
 	sem_post(philo->data->meal_sem);
 	pthread_create(&philo->monitor_thread, NULL, monitoring_b, philo);
+	pthread_detach(philo->monitor_thread);
 	usleep(100);
 	if (philo->data->num_philo == 1)
 	{
@@ -84,9 +85,13 @@ void	routine_b(t_philo_b *philo)
 		is_eating_b(philo);
 		release_forks_b(philo);
 		if (must_eat > 0 && philo->meals_eaten >= must_eat)
+		{
+			cleanup_child_b(philo->data);
 			exit(EXIT_SUCCESS_FED);
+		}
 		is_sleeping_b(philo);
 		is_thinking_b(philo);
 	}
+	cleanup_child_b(philo->data);
 	exit(EXIT_ERROR);
 }

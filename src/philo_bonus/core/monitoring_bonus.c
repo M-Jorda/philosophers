@@ -28,6 +28,7 @@ void	*monitoring_b(void *arg)
 		if (time_last_meal >= philo->data->time_to_die)
 		{
 			print_death_b(philo);
+			cleanup_child_b(philo->data);
 			exit(EXIT_DEATH);
 		}
 		usleep(20);

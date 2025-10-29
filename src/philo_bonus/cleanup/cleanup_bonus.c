@@ -52,3 +52,19 @@ void	kill_philos(t_data_b *data, int index)
 			kill(philo->pid, SIGTERM);
 	}
 }
+
+void	cleanup_child_b(t_data_b *data)
+{
+	if (!data)
+		return ;
+	if (data->forks_sem != SEM_FAILED)
+		sem_close(data->forks_sem);
+	if (data->print_sem != SEM_FAILED)
+		sem_close(data->print_sem);
+	if (data->meal_sem != SEM_FAILED)
+		sem_close(data->meal_sem);
+	if (data->death_sem != SEM_FAILED)
+		sem_close(data->death_sem);
+	if (data->philo)
+		free(data->philo);
+}

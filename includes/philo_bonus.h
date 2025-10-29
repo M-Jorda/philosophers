@@ -34,6 +34,7 @@ void	monitor_process(t_data_b *data);
 
 int		cleanup_b(t_data_b *data, int err);
 void	kill_philos(t_data_b *data, int index);
+void	cleanup_child_b(t_data_b *data);
 
 // ################################## PRINT ################################# //
 
